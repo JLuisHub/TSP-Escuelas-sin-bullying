@@ -3,13 +3,13 @@
 ## Repositorio de la aplicacion-web y la aplicacion-movil.
 
 #### Integrantes:
-+ Roverto Carlo Tovar Varela @JLuisHub
++ Roverto Carlo Tovar Varela
 + Jose Luis Vargas Ibarra
-+ Juan Francisco Navarro Ambriz @JuanFrancisco574
++ Juan Francisco Navarro Ambriz
 + Reyna Esmeralda Sánchez Rodríguez
 
 ### Descripcion:
-En este repositorio se almacena el codigo fuente de la *aplicacion-web* y la *aplicaion-movil*.
+En este repositorio se almacena el codigo fuente de la *aplicacion-web* y la *aplicacion-movil*.
 
 Dentro de ** se encuentra la *aplicacion-web* desarrollada con **Laravel**.
 
