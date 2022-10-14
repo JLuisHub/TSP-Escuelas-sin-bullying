@@ -19,14 +19,14 @@ class Estudiantes extends Model
 
             foreach($data as $row){
                 self::updateOrCreate([
-                    'Matricula'=>$row[0]
+                    'Matricula'=>rtrim(ltrim($row[0]))
                 ],[
-                    'Nombre'=>$row[1],
-                    'Apaterno'=>$row[2],
-                    'Amaterno'=>$row[3],
-                    'Contrasenia'=>$row[4],
-                    'FechaNac'=>$row[5],
-                    'clave'=>$row[6],
+                    'Nombre'=>rtrim(ltrim($row[1])),
+                    'Apaterno'=>rtrim(ltrim($row[2])),
+                    'Amaterno'=>rtrim(ltrim($row[3])),
+                    'Contrasenia'=>rtrim(ltrim($row[4])),
+                    'FechaNac'=>rtrim(ltrim($row[5])),
+                    'clave'=>rtrim(ltrim($row[6])),
                 ]
                 );
             }
