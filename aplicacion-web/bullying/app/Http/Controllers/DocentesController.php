@@ -74,80 +74,14 @@ class DocentesController extends Controller
         $file = file($request->file->getRealPath()); 
         $data = array_slice($file,1); // Nos permite eliminar la primera linea del archivo
 
-        //  Validamos que el archivo contenga 7 columnas y no esten vacias.
-        $contiene_cols_vacias = false;
-        //  Validamos que la clave del archivo CSV sea congruente con la clave del director que sube el CSV
-        //  es decir, que la clave de la escuela del director sea igual que la clave de los docentes registrados por CSV
-        $es_la_clave_congruente = true;
-        $contiene_mas_de_7_cols = false;
+        $mensaje_de_error = validar_estructura_del_archivo($data);
 
-        $numero_renglon = 2;
-        $clave_erronea = "";
-
-        foreach( $data as $renglon_actual ){
-
-            // Divido el renglón acutal por ,
-            // Esto para obtener las columnas de la fila del archivo CSV.
-            $renglon_dividido = explode(",",$renglon_actual);
-            $numero_cols = 0;
-            foreach( $renglon_dividido as $parte_del_renglon ){
-                if( empty( rtrim(ltrim($parte_del_renglon))) ){
-                    $contiene_cols_vacias = true;
-                    break;
-                }
-                $numero_cols = $numero_cols + 1;
-            }
-
-            if($contiene_cols_vacias || count($renglon_dividido) < 7){
-                $contiene_cols_vacias = true;
-                break;
-            }
-
-            if($numero_cols > 7){
-                $contiene_mas_de_7_cols = true;
-                break;
-            }
-
-            if(  rtrim((ltrim($renglon_dividido[6]))) != Auth::user()->clave  ){ 
-                $es_la_clave_congruente = false;
-                $clave_erronea = trim($renglon_dividido[6]);
-                break;
-            }
-
-            $numero_renglon = $numero_renglon + 1;
-        }
-
-
-        if( $contiene_mas_de_7_cols ){
-            
+        if( !empty($mensaje_de_error) ){ // El archivo CSV tiene algun error en su estructura
             return back()->withErrors([
-                'error'=>
-                'En la fila ' . $numero_renglon . ' el archivo CSV contiene más de 7 columnas.'
-            ]);
-            
-        }
-
-        if( $contiene_cols_vacias ){
-            return back()->withErrors([
-                'error'=>
-                'En la fila ' . $numero_renglon . ' el archivo CSV contiene 1 o más columnas vacias'
+                'error' => $mensaje_de_error
             ]);
         }
 
-        if( $es_la_clave_congruente == false ){
-            //$debb = "Entre en con";
-            
-            if( empty(trim($clave_erronea)) ){
-                $clave_erronea = "Columna vacía";
-            }
-            return back()->withErrors([
-                'error'=>
-                'En la fila ' . $numero_renglon . ' del archivo CSV la clave de institución 
-                no es congruente con la clave de tu institución. Tu clave es :' . Auth::user()->clave . ' la clave en el archivo CSV es '
-                . $clave_erronea
-            ]);
-            
-        }
         $parts =(array_chunk($data,1000)); 
         foreach($parts as $index=>$part){
             $fileName = resource_path('doc/'.date('y-m-d-H-i-s').$index.'.csv');
