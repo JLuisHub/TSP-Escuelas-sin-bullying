@@ -97,14 +97,29 @@ class EstudiantesController extends Controller
     }
 
     /**
+     * Display all the resources.
+     *
+     * @param  \App\Models\Estudiantes $estudiantes
+     * @return \Illuminate\Http\Response
+     */
+    public function all($clave)
+    {
+        $datos = Estudiantes::all() -> where('clave',$clave);
+
+        return response() -> json($datos);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function show(Estudiantes $estudiantes)
+    public function show($Matricula)
     {
-        //
+        $estudiante = Estudiantes::findOrFail($Matricula);
+
+        return response() -> json($estudiante);
     }
 
     /**

@@ -10,7 +10,7 @@ class Estudiantes extends Model
     #use HasFactory;
     //Nos permite el almacenamiento de los datos uno por uno que se encuentrar en un archivo cvs
     public $timestamps = false;
-    protected $fillable = ['Matricula', 'Nombre','Apaterno','Amaterno','Contrasenia','FechaNac','clave']; 
+    protected $fillable = ['Matricula', 'Nombre','Apaterno','Amaterno','Contrasenia','FechaNac','clave'];
     public function importDatos(){
         $path = resource_path('doc_est/*.csv');
         $g = glob($path);
