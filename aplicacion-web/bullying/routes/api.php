@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\V1\DocentesAPIController;
+use App\Http\Controllers\V1\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::prefix('v1')->group(function () {
+
+    Route::post('login', [AuthController::class, 'authenticate']);
+    //Todas las rutas aqui dentro requieren autenticación
+    Route::group(['middleware' => ['jwt.verify']], function() {
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::post('get-user', [AuthController::class, 'getUser']);
+        Route::get('docentes', [DocentesAPIController::class, 'index']);
+        Route::get('docentes/{clave}', [DocentesAPIController::class, 'show']);
+    });
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
