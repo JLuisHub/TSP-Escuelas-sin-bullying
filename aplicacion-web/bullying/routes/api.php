@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\V1\DocentesAPIController;
-use App\Http\Controllers\V1\AuthController;
-
-use App\Http\Controllers\V1\ReporteAPIController;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\V1\AuthController;
+use App\Http\Controllers\V1\DocentesAPIController;
+use App\Http\Controllers\V1\ReporteAPIController; 
+use App\Http\Controllers\V1\EstudianteAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +21,11 @@ use Illuminate\Support\Facades\Route;
 
 // PARTE DE REYNA 
 Route::group(["auth:sanctum"],function(){
-    Route::post("reportes_guardar", [ReporteAPIController::class,'store'] );
-    Route::delete("reportes_eliminar/{id_reporte}",[ReporteAPIController::class,'destroy']);
+    Route::post("reporte", [ReporteAPIController::class,'store'] );
+    Route::delete("reporte/{id_reporte}",[ReporteAPIController::class,'destroy']);
+    Route::get('estudiantes/{clave}',[EstudianteAPIController::class,'showAll']);
 });
+
 
 Route::prefix('v1')->group(function () {
 
