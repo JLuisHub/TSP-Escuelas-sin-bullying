@@ -25,5 +25,9 @@ Route::get('/verAlumnos', function () {
 });
 // rutas para las vistas
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::resource('docentes','App\Http\Controllers\DocentesController');
 Route::resource('estudiantes','App\Http\Controllers\EstudiantesController');
+
+// Rutas para las APIs externas
+Route::get('/allEstudiantes/{clave}', [App\Http\Controllers\EstudiantesController::class, 'all'])->name('todosEstudiantes');
