@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\V1\DocentesAPIController;
 use App\Http\Controllers\V1\AuthController;
+
+use App\Http\Controllers\V1\ReporteAPIController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// PARTE DE REYNA 
+Route::group(["auth:sanctum"],function(){
+    Route::post("reportes_guardar", [ReporteAPIController::class,'store'] );
+    Route::delete("reportes_eliminar/{id_reporte}",[ReporteAPIController::class,'destroy']);
+});
 
 Route::prefix('v1')->group(function () {
 

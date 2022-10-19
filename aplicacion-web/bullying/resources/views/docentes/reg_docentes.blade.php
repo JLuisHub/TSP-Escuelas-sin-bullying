@@ -43,24 +43,74 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <div class="card-body">
+                        <div class="form-group mb-3 row" >
+                            <label class="form-label" style="color:#001640; font-size:20px">1.- Crea un archivo cvs con la siguiente estructura:</label>
+                        </div>
+                    </div>
+                    <div class="page-body">
+                        <div class="container-xl">
+                            <div class="row row-cards">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="table-responsive">
+                                            <table class="table table-vcenter card-table">
+                                            <thead>
+                                                <tr>
+                                                <th>Matrícula</th>
+                                                <th>Nombre</th>
+                                                <th>Apellido paterno</th>
+                                                <th>Apellido materno</th>
+                                                <th>Contraseña</th>
+                                                <th>Correo electronico</th>
+                                                <th>Clave de la escuela</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <td >39201458</td>
+                                                <td>Jose  </td>
+                                                <td > Salazar</td>
+                                                <td> Jimenez</td>
+                                                <td>Temporal </td>
+                                                <td>ejemplo@gmail.com </td>
+                                                <td>123456 </td>
+                                                </tr>
+
+                                                <tr>
+                                                <td >39201499</td>
+                                                <td>Juan  </td>
+                                                <td > Dominguez</td>
+                                                <td> Yahoiu</td>
+                                                <td>Temporal </td>
+                                                <td>ejemplo2@gmail.com </td>
+                                                <td>123456 </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <form  action="{{ url('/docentes' )}}" method="POST" enctype="multipart/form-data" >
                         {{ csrf_field() }}          
                         <div class="card-body">
-                            <center>
-                                <div class="col" >
-                                    <label class="form-label" style="color:#001640; font-size:25px">Seleccione el archivo</label>
-                                    <input class="form-control form-control-rounded mb-2" type="file" name="file" style="width: 280px">
+                                <div class="form-group mb-3 row" >
+                                    <label class="col-3 col-form-label" style="color:#001640; font-size:20px">2.- Seleccione el archivo</label>
+                                    <input class="form-control form-control-rounded mb-2" type="file" name="file" style="width: 350px">
                                 </div>
+                                <center>
                                 <div class="form-footer">
                                     <hr>
                                     <button type="submit" class="btn btn-primary" style="background-color:#001640; border-radius: 30px; font-size:20px; width: 180px">
                                         Guardar cambios
                                     </button>
                                 </div>
-                            </center>
+                                </center>
+                                
                         </div>
                     </form>
-                    
                 </div>
             </div>
         </div>
