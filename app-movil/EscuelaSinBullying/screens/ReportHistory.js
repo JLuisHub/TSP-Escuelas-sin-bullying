@@ -16,7 +16,7 @@ function ReportHistory ({route, navigation}) {
 
     //Este array en realidad va cargar los reportes traidos por una query
     this.arrayNew = [
-        { id: 1, description: 'Hizo una travesura con Robert', date: 'A date1' },
+        { id: 1, description: 'Hizo una travesura con Robert, pero son muy buena gente todos ellos bla bla bla bla', date: 'A date1' },
         { id: 2, description: 'Hizo una travesura con Bryan', date: 'A date2' },
         { id: 3, description: 'Hizo una travesura con Vicente', date: 'A date3' },
         { id: 4, description: 'Hizo una travesura con Tristan', date: 'A date4' },
@@ -54,14 +54,14 @@ function ReportHistory ({route, navigation}) {
                 data={this.arrayNew}
 
                 renderItem={({ item }) => (
-                    <ReportCard desc = {item.description} date = {item.date} />
+                    <ReportCard id = {item.id} desc = {item.description} date = {item.date} />
                 )}
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={this.renderSeparator}
                 ListHeaderComponent={this.renderHeader}
             />
             <View style = {styles.button_cont}>
-                <CustomButton text = "+" onPress = {onPressAddReport} />
+                <CustomButton text = "Nuevo Reporte" onPress = {onPressAddReport} />
             </View>
         </View>
     );

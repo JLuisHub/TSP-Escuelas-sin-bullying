@@ -2,12 +2,14 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import SearchFunction from '../components/SearchFunction'
 
-const ProfessorsHome = () => {
+const ProfessorsHome = ({route, navigation}) => {
+    const {clave} = route.params
+    //console.log({clave})
 
     return (
         <View>
             <View>
-                <SearchFunction></SearchFunction>
+                <SearchFunction clave = {clave}/>
             </View>
         </View>
     )

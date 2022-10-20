@@ -17,10 +17,7 @@ const SignInScreen = () => {
     const navigation = useNavigation()
 
     const onSignInPressed = () => {
-        //console.warn('Sign In')
-        //console.log(matricula)
-        
-        if (accesos[matricula]) {
+        /*if (accesos[matricula]) {
             if (accesos[matricula] == password) {
                 console.info("Sesion iniciada")
                 navigation.navigate("ProfessorsHome")
@@ -29,8 +26,71 @@ const SignInScreen = () => {
             }
         } else {
             console.error("Matricula o Contraseña incorrectos")
-        }
+        }*/
+
+        console.assert("Sesion iniciada")
+        navigation.navigate("ProfessorsHome",{clave:12345})
         
+        //InsertRecord()
+        //tryAPI()
+    }
+
+    tryAPI = () => {
+        fetch('http://192.168.1.131:8000/allEstudiantes', {
+            method: 'GET'
+            //Request Type 
+        })
+        .then((response) => response.json())
+        //If response is in json then in success
+        .then((response) => {
+            //Success 
+
+            console.log(response)
+        })
+        //If response is not in json then in error
+        .catch((error) => {
+            //Error 
+            console.error(error);
+        });
+    }
+
+    InsertRecord=()=>{
+        var Matricula = matricula;
+        var Password = password;
+    
+        if ((Matricula.length==0) || (Password.length==0)){
+          alert("Required Field Is Missing!!!");
+        }else{
+          var APIURL = "http://127.0.0.1:8000/docs";
+    
+          var headers = {
+            'Accept' : 'application/json',
+            'Content-Type' : 'application/json'
+          };
+                
+          var Data ={
+            Matricula: Matricula,
+            Password: Password
+          };
+    
+          fetch(APIURL,{
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(Data)
+          })
+          .then((Response)=>Response.json())
+          .then((Response)=>{
+            alert(Response[0].Message)
+            if (Response[0].Message == "Success") {
+              console.log("true")
+              this.props.navigation.navigate("Lista de Alumnos");
+            }
+            console.log(Data);
+          })
+          .catch((error)=>{
+            console.error("ERROR FOUND" + error);
+          })
+        }
     }
 
   return (
