@@ -7,6 +7,7 @@ use App\Http\Controllers\V1\AuthController;
 use App\Http\Controllers\V1\DocentesAPIController;
 use App\Http\Controllers\V1\ReporteAPIController; 
 use App\Http\Controllers\V1\EstudianteAPIController;
+use App\Http\Controllers\V1\CitatorioAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::group(["auth:sanctum"],function(){
 
 
 Route::prefix('v1')->group(function () {
+
+    Route::post('citatorio', [CitatorioAPIController::class, 'store']);
+
 
     Route::post('login', [AuthController::class, 'authenticate']);
     //Todas las rutas aqui dentro requieren autenticación

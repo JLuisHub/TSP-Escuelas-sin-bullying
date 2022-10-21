@@ -9,5 +9,5 @@ class Reporte extends Model
 {
     #use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['id_reporte','id_docente', 'id_estudiante','clave_institucion', 'descripcion', 'fecha'];
+    protected $fillable = ['id_docente','id_estudiante', 'id_tutor_legal', 'descripcion', 'fecha'];
 }
