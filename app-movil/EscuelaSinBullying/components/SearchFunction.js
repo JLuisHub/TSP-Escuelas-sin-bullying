@@ -22,6 +22,34 @@ class SearchFunction extends Component {
     };
   }
 
+<<<<<<< Updated upstream
+=======
+  getData = () => {
+    
+    fetch('http://10.2.54.125:8000/estudiantes/' + this.props.clave, {
+        method: 'GET'
+        //Request Type
+    })
+    .then((response) => response.json())
+    //If response is in json then in success
+    .then((response) => {
+        //Success 
+        response.forEach(element => {
+          tempSet = {matricula: element['Matricula'], 
+                     nombre: (element['Nombre'] + ' ' + element['Apaterno'])}
+          
+          this.arrayNew.push(tempSet)
+        });
+        return this.arrayNew
+    })
+    //If response is not in json then in error
+    .catch((error) => {
+        //Error 
+        console.error(error);
+    });
+  }
+
+>>>>>>> Stashed changes
   renderSeparator = () => {
     return (
       <View
@@ -40,6 +68,8 @@ class SearchFunction extends Component {
       const textData = text.toUpperCase();
     if(text.length >0 ){
       return itemData.indexOf(textData) > -1;
+    } else {
+      return this.arrayNew
     }
 
     });
