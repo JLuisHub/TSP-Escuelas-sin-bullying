@@ -11,11 +11,19 @@ class ReporteAPIController extends Controller
 {
     public function store(Request $request)
     {
+
         $reporte_temp = new Reporte();
-        $reporte_temp->matricula_docente = $request->matricula_docente;
-        $reporte_temp->matricula_estudiante = $request->matricula_estudiante;
+        $reporte_temp->id_docente = $request->id_docente;
+        $reporte_temp->id_estudiante = $request->id_estudiante;
+        $reporte_temp->id_tutor_legal = $request->id_tutor_legal;
         $reporte_temp->descripcion = $request->descripcion;
         $reporte_temp->fecha = $request->fecha;
+
+
+        // Se notificara del reporte 
+        //$tutores_legales_encontrados = DB::table('estudiantes_tutores_legales')->where('id_estudiante', $request->id_estudiante)->get();
+
+
         try{
             $reporte_temp->save();
             return "Guardado con éxito";
