@@ -2,7 +2,8 @@ import { View, Text } from 'react-native'
 import React from 'react'
 
 export default function DBConnection() {
-    var InsertAPIURL = "http://10.0.2.2:80/SignIn/SignUp.php";   //API to render signup
+  var InsertAPIURL = "./SignUp.php";   //API to render signup
+    //var InsertAPIURL = "http://10.0.2.2:80/SignIn/SignUp.php";   //API to render signup
 
     var headers = {
         'Accept': 'application/json',
